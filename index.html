@@ -301,6 +301,7 @@
             position: relative;
             aspect-ratio: 4 / 3;
             background: linear-gradient(135deg, #ffffff, #e0e7ff);
+            cursor: pointer;
         }
         .portfolio-box:hover {
             transform: translateY(-12px);
@@ -334,23 +335,63 @@
             margin-bottom: 1rem;
             line-height: 1.4;
         }
-        /* Contact */
-        .contact {
-            background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
+        .portfolio-icon {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            color: #3b82f6;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
-        .contact .heading span {
+        .portfolio-icon:hover {
             color: #10b981;
+            transform: scale(1.2);
         }
-        .contact form input, .contact form textarea {
-            background: #ffffff;
-            border: 2px solid #e5e7eb;
+        .portfolio-layer .btn {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            margin-top: 0.5rem;
+        }
+        /* Slideshow Modal */
+        .slideshow-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+        .slideshow-modal.active {
+            display: flex;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .slideshow-img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
             border-radius: 0.5rem;
-            padding: 1rem;
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
-        .contact form input:focus, .contact form textarea:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #10b981; /* Highlight color */
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-modal:hover {
+            color: #3b82f6; /* Hover color */
         }
         /* Responsive */
         @media (max-width: 768px) {
@@ -376,7 +417,7 @@
                 right: 0;
             }
             .navbar a {
-                padding: 0.75rem 1.5rem;
+                padding: 0.75rem 1rem;
                 font-size: 1.1rem;
                 width: 100%;
                 text-align: left;
@@ -424,6 +465,16 @@
             .portfolio-layer p {
                 font-size: 0.85rem;
             }
+            .slideshow-container {
+                max-width: 90%;
+            }
+            .portfolio-icon {
+                font-size: 1.2rem;
+            }
+            .portfolio-layer .btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
         }
         @media (min-width: 769px) {
             .header {
@@ -451,9 +502,9 @@
             <i class='bx bx-menu text-3xl text-gray-800 menu-icon' id="menu-icon"></i>
             <nav class="navbar flex gap-6 text-lg font-medium text-gray-600">
                 <a href="#home" class="">Home</a>
-                <a href="#about" class="active">Sobre</a>
+                <a href="#portfolio" class="active">Projectos</a>
+                <a href="#about">Sobre</a>
                 <a href="#experience">Experiência</a>
-                <a href="#portfolio">Portfolio</a>
                 <a href="#contact">Contacto</a>
             </nav>
         </div>
@@ -490,6 +541,68 @@
             </div>
             <div class="home-img mt-8 md:mt-0">
                 <img src="images/home.png" alt="Gerson Savele">
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio section" id="portfolio">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="heading text-3xl md:text-4xl font-bold mb-8">
+                Últimos <span>Projetos</span>
+            </h2>
+            <div class="portfolio-container grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="portfolio-box relative" onclick="openSlideshow('fi')">
+                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                        <i class="fas fa-camera portfolio-icon"></i>
+                        <h4>Plataforma de E-learning</h4>
+                        <p>Solução mobile para cursos internos, que permite a realização de cursos, acompanhamento do progresso e avaliação</p>
+                        <p>Tecnologias: ReactNative e Firebase</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projecto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box relative" onclick="openSlideshow('sca')">
+                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                        <i class="fas fa-camera portfolio-icon"></i>
+                        <h4>Sistema de Comercialização Agrícola</h4>
+                        <p>Plataforma que liga produtores a compradores, facilitando a venda e distribuição de produtos agrícolas..</p>
+                        <p>Tecnologias: PHP, MySQL</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projecto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box relative" onclick="openSlideshow('srr')">
+                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                        <i class="fas fa-camera portfolio-icon"></i>
+                        <h4>Sistema de Registo de Residências</h4>
+                        <p>Plataforma web para gerenciar registros residenciais com base no sistema tradicional usado em moçambique.</p>
+                        <p>Tecnologias: ReactJS, Laravel</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box relative" onclick="openSlideshow('scs')">
+                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                        <i class="fas fa-camera portfolio-icon"></i>
+                        <h4>Aplicação Móvel para Contratação de Serviços</h4>
+                        <p>App que conecta clientes a profissionais do sector informal como forma de potencializar a visibilidade, facilitar o acesso a serviços como carpintaria, jardinagem e outros, e promover a geração de renda através da tecnologia .</p>
+                        <p>Tecnologias: Flutter e Firebase</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box relative">
+                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                        <h4>Aplicação de Gestão de Tarefas</h4>
+                        <p>App móvel com checklists, fotos e tema escuro elegante.</p>
+                        <p>Tecnologias: Flutter, Firebase, GetX</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slideshow Modal -->
+        <div class="slideshow-modal" id="slideshowModal">
+            <div class="slideshow-container">
+                <img class="slideshow-img" id="slideshowImg" src="images/SRR1.png" alt="Slideshow Image">
+                <i class="fas fa-times close-modal" onclick="closeSlideshow()"></i>
             </div>
         </div>
     </section>
@@ -569,52 +682,6 @@
                         <li>Otimização de consultas SQL/PLSQL.</li>
                         <li>Apoio a estudantes em administração de bases de dados.</li>
                     </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portfolio section" id="portfolio">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="heading text-3xl md:text-4xl font-bold mb-8">
-                Últimos <span>Projetos</span>
-            </h2>
-            <div class="portfolio-container grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="portfolio-box relative">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
-                        <h4>Sistema de Registo de Residências</h4>
-                        <p>Plataforma web para gerenciar registros residenciais com design modular.</p>
-                        <p>Tecnologias: ReactJS, Laravel</p>
-                    </div>
-                </div>
-                <div class="portfolio-box relative">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
-                        <h4>Sistema de Comercialização Agrícola</h4>
-                        <p>Aplicação web com painéis analíticos e suporte multilíngue.</p>
-                        <p>Tecnologias: PHP, MySQL</p>
-                    </div>
-                </div>
-                <div class="portfolio-box relative">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
-                        <h4>Aplicação Móvel para Contratação</h4>
-                        <p>App que conecta clientes a profissionais com avaliações por estrelas.</p>
-                        <p>Tecnologias: Flutter e Firebase</p>
-                    </div>
-                </div>
-                <div class="portfolio-box relative">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
-                        <h4>Plataforma de E-learning</h4>
-                        <p>Solução mobile para cursos internos, que permite a realização de cursos, acompanhamento do progresso e avaliação</p>
-                        <p>Tecnologias: ReactNative e Firebase</p>
-                    </div>
-                </div>
-                <div class="portfolio-box relative">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
-                        <h4>Aplicação de Gestão de Tarefas</h4>
-                        <p>App móvel com checklists, fotos e tema escuro elegante.</p>
-                        <p>Tecnologias: Flutter, Firebase, GetX</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -714,6 +781,69 @@
                 }
             });
         });
+
+        // Slideshow Functionality
+        const slideshowModal = document.getElementById('slideshowModal');
+        const slideshowImg = document.getElementById('slideshowImg');
+        const imageSets = {
+            srr: [
+                'images/SRR1.png',
+                'images/SRR2.png',
+                'images/SRR3.png',
+                'images/SRR4.png',
+                'images/SRR5.png',
+                'images/SRR6.png'
+            ],
+            sca: [
+                'images/SCA1.png',
+                'images/SCA2.png',
+                'images/SCA3.png',
+                'images/SCA4.png',
+                'images/SCA5.png'
+            ],
+            scs: [
+                'images/SCS1.png',
+                'images/SCS2.png',
+                'images/SCS3.png',
+                'images/SCS4.png'
+            ],
+            fi: [
+                'images/F1.jpeg',
+                'images/F2.jpeg',
+                'images/F3.jpeg',
+                'images/F4.jpeg',
+                'images/F5.jpeg',
+                'images/F6.jpeg'
+            ]
+        };
+        let currentImageIndex = 0;
+        let currentImageSet = [];
+        let slideshowInterval;
+
+        function openSlideshow(set) {
+            currentImageSet = imageSets[set] || [];
+            if (currentImageSet.length === 0) return;
+            slideshowModal.classList.add('active');
+            body.style.overflow = 'hidden'; // Prevent background scroll
+            currentImageIndex = 0;
+            slideshowImg.src = currentImageSet[currentImageIndex];
+            slideshowImg.alt = set === 'srr' ? 'Sistema de Registo de Residências' : 
+                              set === 'sca' ? 'Sistema de Comercialização Agrícola' : 
+                              set === 'scs' ? 'Aplicação Móvel para Contratação' : 
+                              'Plataforma de E-learning';
+            slideshowInterval = setInterval(nextImage, 2000); // Change image every 2 seconds
+        }
+
+        function closeSlideshow() {
+            slideshowModal.classList.remove('active');
+            body.style.overflow = 'auto'; // Restore scroll
+            clearInterval(slideshowInterval);
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentImageSet.length;
+            slideshowImg.src = currentImageSet[currentImageIndex];
+        }
     </script>
 </body>
 </html>
