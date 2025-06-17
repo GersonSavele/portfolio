@@ -296,29 +296,36 @@
             overflow: hidden;
             border-radius: 1.5rem;
             box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
-            transition: transform 0.4s ease, background 0.4s ease;
-            min-height: 16rem;
-            position: relative;
-            aspect-ratio: 4 / 3;
-            background: linear-gradient(135deg, #ffffff, #e0e7ff);
+            transition: transform 0.4s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            aspect-ratio: auto;
         }
         .portfolio-box:hover {
             transform: translateY(-12px);
-            background: linear-gradient(135deg, #e0e7ff, #d1d9ff);
+        }
+        .portfolio-image {
+            position: relative;
+        }
+        .portfolio-image img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: contain;
+            object-position: center;
+            display: block;
         }
         .portfolio-layer {
             padding: 1.5rem;
-            position: relative;
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            opacity: 1;
-            background: transparent;
+            background: #ffffff;
+            color: #1f2937;
+            flex-grow: 1;
         }
         .portfolio-layer h4 {
             font-size: 1.5rem;
@@ -385,13 +392,129 @@
             position: absolute;
             top: 1rem;
             right: 1rem;
-            color: #10b981; /* Highlight color */
+            color: #10b981;
             font-size: 2rem;
             cursor: pointer;
             transition: color 0.3s ease;
         }
         .close-modal:hover {
-            color: #3b82f6; /* Hover color */
+            color: #3b82f6;
+        }
+        /* Contact Section */
+        .contact.section {
+            padding: 4rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Contact Form */
+        .contact-form {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: #1f2937;
+            background: #f9fafb;
+            transition: all 0.3s ease;
+        }
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+        .input-group label {
+            position: absolute;
+            top: 0.75rem;
+            left: 2.5rem;
+            font-size: 1rem;
+            color: #6b7280;
+            pointer-events: none;
+            transition: all 0.2s ease;
+        }
+        .input-group input:not(:placeholder-shown) + label,
+        .input-group input:focus + label,
+        .input-group textarea:not(:placeholder-shown) + label,
+        .input-group textarea:focus + label {
+            top: -0.75rem;
+            left: 1rem;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            background: #ffffff;
+            padding: 0 0.25rem;
+        }
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 0.75rem;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1rem;
+        }
+        .input-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            display: none;
+            font-size: 0.9rem;
+        }
+        .form-message.success {
+            background: #dcfce7;
+            color: #166534;
+            display: block;
+        }
+        .form-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .submit-btn .loader {
+            display: none;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 0.5rem;
+        }
+        .submit-btn:disabled .loader {
+            display: inline-block;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .honeypot {
+            display: none;
         }
         /* Responsive */
         @media (max-width: 768px) {
@@ -453,9 +576,6 @@
             .experience-card::before {
                 font-size: 4rem;
             }
-            .portfolio-box {
-                min-height: 12rem;
-            }
             .portfolio-layer {
                 padding: 1rem;
             }
@@ -474,6 +594,23 @@
             .portfolio-layer .btn {
                 font-size: 0.8rem;
                 padding: 0.4rem 0.8rem;
+            }
+            .contact.section {
+                padding: 2rem 1rem;
+            }
+            .contact-form {
+                padding: 1.5rem;
+                min-width: 100%;
+            }
+            .input-group label {
+                left: 2.25rem;
+            }
+            .input-group input,
+            .input-group textarea {
+                padding-left: 2.25rem;
+            }
+            .input-group i {
+                left: 0.5rem;
             }
         }
         @media (min-width: 769px) {
@@ -502,7 +639,7 @@
             <i class='bx bx-menu text-3xl text-gray-800 menu-icon' id="menu-icon"></i>
             <nav class="navbar flex gap-6 text-lg font-medium text-gray-600">
                 <a href="#home" class="">Home</a>
-                <a href="#portfolio" class="active">Projectos</a>
+                <a href="#portfolio" class="active">Portfolio</a>
                 <a href="#about">Sobre</a>
                 <a href="#experience">Experiência</a>
                 <a href="#contact">Contacto</a>
@@ -552,43 +689,55 @@
                 Últimos <span>Projetos</span>
             </h2>
             <div class="portfolio-container grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="portfolio-box relative" onclick="openSlideshow('fi')">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                <div class="portfolio-box fi" onclick="openSlideshow('fi')">
+                    <div class="portfolio-image">
+                        <img src="images/F2.jpeg" alt="Plataforma de E-learning">
                         <i class="fas fa-camera portfolio-icon"></i>
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
                         <h4>Plataforma de E-learning</h4>
                         <p>Solução mobile para cursos internos, que permite a realização de cursos, acompanhamento do progresso e avaliação</p>
                         <p>Tecnologias: ReactNative e Firebase</p>
-                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projecto</a>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
                     </div>
                 </div>
-                <div class="portfolio-box relative" onclick="openSlideshow('sca')">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                <div class="portfolio-box sca" onclick="openSlideshow('sca')">
+                    <div class="portfolio-image">
+                        <img src="images/SCA4.png" alt="Sistema de Comercialização Agrícola">
                         <i class="fas fa-camera portfolio-icon"></i>
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
                         <h4>Sistema de Comercialização Agrícola</h4>
-                        <p>Plataforma que liga produtores a compradores, facilitando a venda e distribuição de produtos agrícolas..</p>
+                        <p>Plataforma que liga produtores a compradores, facilitando a venda e distribuição de produtos agrícolas.</p>
                         <p>Tecnologias: PHP, MySQL</p>
-                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projecto</a>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
                     </div>
                 </div>
-                <div class="portfolio-box relative" onclick="openSlideshow('srr')">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                <div class="portfolio-box srr" onclick="openSlideshow('srr')">
+                    <div class="portfolio-image">
+                        <img src="images/SRR1.png" alt="Sistema de Registo de Residências">
                         <i class="fas fa-camera portfolio-icon"></i>
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
                         <h4>Sistema de Registo de Residências</h4>
                         <p>Plataforma web para gerenciar registros residenciais com base no sistema tradicional usado em moçambique.</p>
                         <p>Tecnologias: ReactJS, Laravel</p>
                         <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
                     </div>
                 </div>
-                <div class="portfolio-box relative" onclick="openSlideshow('scs')">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                <div class="portfolio-box scs" onclick="openSlideshow('scs')">
+                    <div class="portfolio-image">
+                        <img src="images/SCS3.png" alt="Aplicação Móvel para Contratação">
                         <i class="fas fa-camera portfolio-icon"></i>
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
                         <h4>Aplicação Móvel para Contratação de Serviços</h4>
-                        <p>App que conecta clientes a profissionais do sector informal como facilitar o acesso a serviços como carpintaria, jardinagem e outros .</p>
+                        <p>App que conecta clientes a profissionais do sector informal como facilitar o acesso a serviços como carpintaria, jardinagem e outros.</p>
                         <p>Tecnologias: Flutter e Firebase</p>
                         <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
                     </div>
                 </div>
-                <div class="portfolio-box relative">
+                <div class="portfolio-box">
                     <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
                         <h4>Aplicação de Gestão de Tarefas</h4>
                         <p>App móvel com checklists, fotos e tema escuro elegante.</p>
@@ -689,22 +838,48 @@
 
     <!-- Contact Section -->
     <section class="contact section" id="contact">
-        <div class="container mx-auto px-4 text-center">
+        <div class="container mx-auto px-4">
             <h2 class="heading text-3xl md:text-4xl font-bold mb-8">
                 Contacte <span>Me!</span>
             </h2>
-            <form action="https://formsubmit.co/gersonsavele005@gmail.com" method="POST" class="max-w-lg mx-auto">
-                <div class="input-box grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <input type="text" name="name" placeholder="Nome Completo" required>
-                    <input type="email" name="email" placeholder="Email" required>
+            <form action="https://formsubmit.co/gersonsavele005@gmail.com" method="POST" class="contact-form" id="contactForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="input-group">
+                        <input type="text" name="name" id="name" placeholder=" " required aria-label="Nome Completo">
+                        <label for="name">Nome Completo</label>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" name="email" id="email" placeholder=" " required aria-label="Email">
+                        <label for="email">Email</label>
+                        <i class="fas fa-envelope"></i>
+                    </div>
                 </div>
-                <div class="input-box grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <input type="tel" name="contact" placeholder="Contacto" required>
-                    <input type="text" name="subject" placeholder="Assunto" required>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="input-group">
+                        <input type="tel" name="contact" id="contact" placeholder=" " required aria-label="Contacto">
+                        <label for="contact">Contacto</label>
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="subject" id="subject" placeholder=" " required aria-label="Assunto">
+                        <label for="subject">Assunto</label>
+                        <i class="fas fa-tag"></i>
+                    </div>
                 </div>
-                <textarea name="message" cols="30" rows="6" placeholder="Sua Mensagem" required class="w-full mb-4"></textarea>
-                <input type="submit" value="Enviar Mensagem" class="btn text-blue-600">
+                <div class="input-group">
+                    <textarea name="message" id="message" placeholder=" " required aria-label="Sua Mensagem"></textarea>
+                    <label for="message">Sua Mensagem</label>
+                    <i class="fas fa-comment"></i>
+                </div>
+                <input type="text" name="_honey" class="honeypot" aria-hidden="true">
                 <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="">
+                <div class="form-message" id="formMessage"></div>
+                <button type="submit" class="btn submit-btn text-white rounded-lg w-full flex items-center justify-center">
+                    Enviar Mensagem
+                    <span class="loader"></span>
+                </button>
             </form>
         </div>
     </section>
@@ -721,13 +896,12 @@
             navbar.classList.toggle('active');
             menuIcon.classList.toggle('bx-x');
             if (navbar.classList.contains('active')) {
-                body.style.overflow = 'hidden'; // Prevent background scroll
+                body.style.overflow = 'hidden';
             } else {
-                body.style.overflow = 'auto'; // Restore scroll
+                body.style.overflow = 'auto';
             }
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (event) => {
             if (!navbar.contains(event.target) && !menuIcon.contains(event.target) && navbar.classList.contains('active')) {
                 navbar.classList.remove('active');
@@ -736,7 +910,6 @@
             }
         });
 
-        // Close menu when clicking a nav link
         navbar.addEventListener('click', (event) => {
             if (event.target.tagName === 'A') {
                 navbar.classList.remove('active');
@@ -824,25 +997,105 @@
             currentImageSet = imageSets[set] || [];
             if (currentImageSet.length === 0) return;
             slideshowModal.classList.add('active');
-            body.style.overflow = 'hidden'; // Prevent background scroll
+            body.style.overflow = 'hidden';
             currentImageIndex = 0;
             slideshowImg.src = currentImageSet[currentImageIndex];
             slideshowImg.alt = set === 'srr' ? 'Sistema de Registo de Residências' : 
                               set === 'sca' ? 'Sistema de Comercialização Agrícola' : 
                               set === 'scs' ? 'Aplicação Móvel para Contratação' : 
                               'Plataforma de E-learning';
-            slideshowInterval = setInterval(nextImage, 2000); // Change image every 2 seconds
+            slideshowInterval = setInterval(nextImage, 2000);
         }
 
         function closeSlideshow() {
             slideshowModal.classList.remove('active');
-            body.style.overflow = 'auto'; // Restore scroll
+            body.style.overflow = 'auto';
             clearInterval(slideshowInterval);
         }
 
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % currentImageSet.length;
             slideshowImg.src = currentImageSet[currentImageIndex];
+        }
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = contactForm.querySelector('.submit-btn');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Client-side validation
+            const name = contactForm.name.value.trim();
+            const email = contactForm.email.value.trim();
+            const contact = contactForm.contact.value.trim();
+            const subject = contactForm.subject.value.trim();
+            const message = contactForm.message.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^\+?\d{9,15}$/;
+
+            if (!name || name.length < 2) {
+                showMessage('Por favor, insira um nome válido.', 'error');
+                return;
+            }
+            if (!email || !emailRegex.test(email)) {
+                showMessage('Por favor, insira um email válido.', 'error');
+                return;
+            }
+            if (!contact || !phoneRegex.test(contact)) {
+                showMessage('Por favor, insira um número de contacto válido (9-15 dígitos).', 'error');
+                return;
+            }
+            if (!subject || subject.length < 3) {
+                showMessage('Por favor, insira um assunto válido.', 'error');
+                return;
+            }
+            if (!message || message.length < 10) {
+                showMessage('Por favor, insira uma mensagem com pelo menos 10 caracteres.', 'error');
+                return;
+            }
+
+            // Check honeypot
+            if (contactForm._honey.value) {
+                showMessage('Erro ao enviar a mensagem.', 'error');
+                return;
+            }
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.querySelector('.loader').style.display = 'inline-block';
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    showMessage('Mensagem enviada com sucesso!', 'success');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Falha ao enviar a mensagem.');
+                }
+            } catch (error) {
+                showMessage('Ocorreu um erro. Por favor, tente novamente.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.querySelector('.loader').style.display = 'none';
+            }
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
         }
     </script>
 </body>
