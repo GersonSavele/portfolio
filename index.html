@@ -32,18 +32,29 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             position: fixed;
             width: 100%;
-            z-index: 50;
+            z-index: 100;
+            padding: 1rem 1.5rem;
         }
         .logo {
             font-weight: 700;
             background: linear-gradient(to right, #3b82f6, #10b981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+        }
+        .navbar {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4b5563;
+            transition: all 0.3s ease;
         }
         .navbar a {
-            font-weight: 500;
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
+            text-decoration: none;
+            color: inherit;
             transition: all 0.3s ease;
         }
         .navbar a:hover, .navbar a.active {
@@ -51,6 +62,10 @@
             color: #ffffff;
         }
         .menu-icon {
+            display: none;
+            font-size: 1.75rem;
+            color: #1f2937;
+            cursor: pointer;
             transition: transform 0.3s ease;
         }
         .menu-icon.bx-x {
@@ -64,6 +79,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            z-index: 1;
         }
         .section::before {
             content: '';
@@ -118,7 +134,7 @@
             object-fit: cover;
             object-position: center;
             border-radius: 50%;
-            border: none; /* Removed border */
+            border: none;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             transition: transform 0.5s ease;
         }
@@ -318,21 +334,6 @@
             margin-bottom: 1rem;
             line-height: 1.4;
         }
-        .portfolio-layer a {
-            background: linear-gradient(to right, #3b82f6, #10b981);
-            width: 2.5rem;
-            height: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-        .portfolio-layer a:hover {
-            transform: scale(1.2);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
         /* Contact */
         .contact {
             background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
@@ -353,19 +354,32 @@
         }
         /* Responsive */
         @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
             .navbar {
                 display: none;
                 flex-direction: column;
-                position: absolute;
-                top: 4rem;
-                left: 0;
-                width: 100%;
-                background: #ffffff;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                padding: 1rem 0;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+                padding: 2rem 1rem;
+                transition: right 0.3s ease;
+                z-index: 99;
             }
             .navbar.active {
                 display: flex;
+                right: 0;
+            }
+            .navbar a {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.1rem;
+                width: 100%;
+                text-align: left;
             }
             .home-content, .about-content {
                 max-width: 100%;
@@ -410,14 +424,18 @@
             .portfolio-layer p {
                 font-size: 0.85rem;
             }
-            .portfolio-layer a {
-                width: 2rem;
-                height: 2rem;
-            }
         }
         @media (min-width: 769px) {
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
             .menu-icon {
                 display: none;
+            }
+            .navbar {
+                display: flex;
             }
             .home-content, .about-content {
                 text-align: left;
@@ -428,12 +446,12 @@
 <body>
     <!-- Header Section -->
     <header class="header">
-        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
             <a href="#" class="logo text-2xl">Portfolio</a>
             <i class='bx bx-menu text-3xl text-gray-800 menu-icon' id="menu-icon"></i>
             <nav class="navbar flex gap-6 text-lg font-medium text-gray-600">
-                <a href="#home" class="active">Home</a>
-                <a href="#about">Sobre</a>
+                <a href="#home" class="">Home</a>
+                <a href="#about" class="active">Sobre</a>
                 <a href="#experience">Experiência</a>
                 <a href="#portfolio">Portfolio</a>
                 <a href="#contact">Contacto</a>
@@ -449,8 +467,8 @@
                 <h2>Gerson Savele</h2>
                 <h2><span>Desenvolvedor Web | Especialista em Suporte Técnico</span></h2>
                 <p class="text-gray-600 mb-6">
-                    Com mais de 6 anos de experiência em TI, sou apaixonado por criar soluções inovadoras em desenvolvimento web, administração de sistemas e suporte técnico. 
-                    Meu objetivo é impulsionar a eficiência operacional em equipes dinâmicas.
+                    Profissional de TI com mais de 6 anos de experiência em desenvolvimento web e mobile, administração de sistemas e suporte técnico.
+                    Focado em criar soluções eficientes que aumentam a produtividade de equipas dinâmicas.
                 </p>
                 <div class="social-media flex justify-center md:justify-start gap-4 mb-6">
                     <a href="https://web.facebook.com/gersonsebastiao.savele">
@@ -566,22 +584,36 @@
                 <div class="portfolio-box relative">
                     <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
                         <h4>Sistema de Registo de Residências</h4>
-                        <p>Desenvolvido com ReactJS no front-end e Laravel no back-end.</p>
-                        <a href="#"><i class='bx bx-link-external'></i></a>
+                        <p>Plataforma web para gerenciar registros residenciais com design modular.</p>
+                        <p>Tecnologias: ReactJS, Laravel</p>
                     </div>
                 </div>
                 <div class="portfolio-box relative">
                     <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
                         <h4>Sistema de Comercialização Agrícola</h4>
-                        <p>Aplicação web construída com PHP e base de dados MySQL.</p>
-                        <a href="#"><i class='bx bx-link-external'></i></a>
+                        <p>Aplicação web com painéis analíticos e suporte multilíngue.</p>
+                        <p>Tecnologias: PHP, MySQL</p>
                     </div>
                 </div>
                 <div class="portfolio-box relative">
                     <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
-                        <h4>Aplicação Móvel para Contratação de Profissionais do Sector Informal</h4>
-                        <p>Aplicativo desenvolvido em Flutter, conecta clientes a profissionais autónomos das áreas de construção, jardinagem, serralharia e outros, promovendo o acesso rápido a serviços técnicos locais.</p>
-                        <a href="#"><i class='bx bx-link-external'></i></a>
+                        <h4>Aplicação Móvel para Contratação</h4>
+                        <p>App que conecta clientes a profissionais com avaliações por estrelas.</p>
+                        <p>Tecnologias: Flutter</p>
+                    </div>
+                </div>
+                <div class="portfolio-box relative">
+                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                        <h4>Plataforma de E-learning</h4>
+                        <p>Solução web para cursos internos com Zoom e Google Calendar.</p>
+                        <p>Tecnologias: Laravel, ReactJS, MariaDB</p>
+                    </div>
+                </div>
+                <div class="portfolio-box relative">
+                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
+                        <h4>Aplicação de Gestão de Tarefas</h4>
+                        <p>App móvel com checklists, fotos e tema escuro elegante.</p>
+                        <p>Tecnologias: Flutter, Firebase, GetX</p>
                     </div>
                 </div>
             </div>
@@ -616,9 +648,34 @@
         // Menu Toggle
         const menuIcon = document.getElementById('menu-icon');
         const navbar = document.querySelector('.navbar');
+        const body = document.body;
+
         menuIcon.addEventListener('click', () => {
             navbar.classList.toggle('active');
             menuIcon.classList.toggle('bx-x');
+            if (navbar.classList.contains('active')) {
+                body.style.overflow = 'hidden'; // Prevent background scroll
+            } else {
+                body.style.overflow = 'auto'; // Restore scroll
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!navbar.contains(event.target) && !menuIcon.contains(event.target) && navbar.classList.contains('active')) {
+                navbar.classList.remove('active');
+                menuIcon.classList.remove('bx-x');
+                body.style.overflow = 'auto';
+            }
+        });
+
+        // Close menu when clicking a nav link
+        navbar.addEventListener('click', (event) => {
+            if (event.target.tagName === 'A') {
+                navbar.classList.remove('active');
+                menuIcon.classList.remove('bx-x');
+                body.style.overflow = 'auto';
+            }
         });
 
         // ScrollReveal Animations
