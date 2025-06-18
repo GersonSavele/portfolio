@@ -316,6 +316,22 @@
             object-position: center;
             display: block;
         }
+        .portfolio-image video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+        .pb .portfolio-image {
+            background-image: url('images/PB.png');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+        }
         .portfolio-layer {
             padding: 1.5rem;
             display: flex;
@@ -388,6 +404,14 @@
             border-radius: 0.5rem;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
+        .slideshow-video {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
         .close-modal {
             position: absolute;
             top: 1rem;
@@ -399,6 +423,20 @@
         }
         .close-modal:hover {
             color: #3b82f6;
+        }
+        .next-slide {
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            color: #10b981;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .next-slide:hover {
+            color: #3b82f6;
+            transform: translateY(-50%) scale(1.2);
         }
         /* Contact Section */
         .contact.section {
@@ -515,6 +553,15 @@
         }
         .honeypot {
             display: none;
+        }
+        /* Task Management App Box */
+        .gt .portfolio-image {
+            background-image: url('images/GT.png');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
         }
         /* Responsive */
         @media (max-width: 768px) {
@@ -638,14 +685,110 @@
             <a href="#" class="logo text-2xl">Portfolio</a>
             <i class='bx bx-menu text-3xl text-gray-800 menu-icon' id="menu-icon"></i>
             <nav class="navbar flex gap-6 text-lg font-medium text-gray-600">
-                <a href="#home" class="">Home</a>
                 <a href="#portfolio" class="active">Portfolio</a>
+                <a href="#home">Perfil</a>
                 <a href="#about">Sobre</a>
                 <a href="#experience">Experiência</a>
                 <a href="#contact">Contacto</a>
             </nav>
         </div>
     </header>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio section" id="portfolio">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="heading text-3xl md:text-4xl font-bold mb-8">
+                Últimos <span>Projetos</span>
+            </h2>
+            <div class="portfolio-container grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="portfolio-box fi" onclick="openSlideshow('fi')">
+                    <div class="portfolio-image">
+                        <img src="images/F2.jpeg" alt="Plataforma de E-learning">
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
+                        <h4>Plataforma de E-learning</h4>
+                        <p>Solução mobile para cursos internos, que permite a realização de cursos, acompanhamento do progresso e avaliação</p>
+                        <p>Tecnologias: ReactNative e Firebase</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box pb" onclick="openSlideshow('pb')">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
+                        <h4>E-commerce PrecosBaixos</h4>
+                        <p>Plataforma de e-commerce desenvolvida com WordPress para venda de produtos online, com gestão de stock e pagamentos integrados.</p>
+                        <p>Tecnologias: WordPress</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box sca" onclick="openSlideshow('sca')">
+                    <div class="portfolio-image">
+                        <img src="images/SCA4.png" alt="Sistema de Comercialização Agrícola">
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
+                        <h4>Sistema de Comercialização Agrícola</h4>
+                        <p>Plataforma que liga produtores a compradores, facilitando a venda e distribuição de produtos agrícolas.</p>
+                        <p>Tecnologias: PHP, MySQL</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box srr" onclick="openSlideshow('srr')">
+                    <div class="portfolio-image">
+                        <img src="images/SRR1.png" alt="Sistema de Registo de Residências">
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
+                        <h4>Sistema de Registo de Residências</h4>
+                        <p>Plataforma web para gerenciar registros residenciais com base no sistema tradicional usado em moçambique.</p>
+                        <p>Tecnologias: ReactJS, Laravel</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box scs" onclick="openSlideshow('scs')">
+                    <div class="portfolio-image">
+                        <img src="images/SCS3.png" alt="Aplicação Móvel para Contratação">
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
+                        <h4>Aplicação Móvel para Contratação de Serviços</h4>
+                        <p>App que conecta clientes a profissionais do sector informal como facilitar o acesso a serviços como carpintaria, jardinagem e outros.</p>
+                        <p>Tecnologias: Flutter e Firebase</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box gt" onclick="openSlideshow('gt')">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
+                        <h4>Aplicação de Gestão de Tarefas</h4>
+                        <p>App móvel com checklists, fotos e tema escuro elegante.</p>
+                        <p>Tecnologias: Flutter, Firebase, GetX</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+                <div class="portfolio-box dg" onclick="openSlideshow('dg')">
+                    <div class="portfolio-image">
+                        <img src="images/DG1.png" alt="Design Gráfico">
+                    </div>
+                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
+                        <h4>Design Gráfico</h4>
+                        <p>Criação de identidades visuais, logotipos e materiais promocionais para marcas e eventos.</p>
+                        <p>Tecnologias: Adobe Photoshop, Illustrator, Figma</p>
+                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slideshow Modal -->
+        <div class="slideshow-modal" id="slideshowModal">
+            <div class="slideshow-container">
+                <img class="slideshow-img" id="slideshowImg" src="images/SRR1.png" alt="Slideshow Image">
+                <video class="slideshow-video" id="slideshowVideo" controls autoplay style="display: none;" aria-label="Slideshow Video">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <i class="fas fa-times close-modal" onclick="closeSlideshow()"></i>
+                <i class="fas fa-chevron-right next-slide" onclick="nextImage()"></i>
+            </div>
+        </div>
+    </section>
 
     <!-- Home Section -->
     <section class="home section" id="home">
@@ -678,80 +821,6 @@
             </div>
             <div class="home-img mt-8 md:mt-0">
                 <img src="images/home.png" alt="Gerson Savele">
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portfolio section" id="portfolio">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="heading text-3xl md:text-4xl font-bold mb-8">
-                Últimos <span>Projetos</span>
-            </h2>
-            <div class="portfolio-container grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="portfolio-box fi" onclick="openSlideshow('fi')">
-                    <div class="portfolio-image">
-                        <img src="images/F2.jpeg" alt="Plataforma de E-learning">
-                        <i class="fas fa-camera portfolio-icon"></i>
-                    </div>
-                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
-                        <h4>Plataforma de E-learning</h4>
-                        <p>Solução mobile para cursos internos, que permite a realização de cursos, acompanhamento do progresso e avaliação</p>
-                        <p>Tecnologias: ReactNative e Firebase</p>
-                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="portfolio-box sca" onclick="openSlideshow('sca')">
-                    <div class="portfolio-image">
-                        <img src="images/SCA4.png" alt="Sistema de Comercialização Agrícola">
-                        <i class="fas fa-camera portfolio-icon"></i>
-                    </div>
-                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
-                        <h4>Sistema de Comercialização Agrícola</h4>
-                        <p>Plataforma que liga produtores a compradores, facilitando a venda e distribuição de produtos agrícolas.</p>
-                        <p>Tecnologias: PHP, MySQL</p>
-                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="portfolio-box srr" onclick="openSlideshow('srr')">
-                    <div class="portfolio-image">
-                        <img src="images/SRR1.png" alt="Sistema de Registo de Residências">
-                        <i class="fas fa-camera portfolio-icon"></i>
-                    </div>
-                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
-                        <h4>Sistema de Registo de Residências</h4>
-                        <p>Plataforma web para gerenciar registros residenciais com base no sistema tradicional usado em moçambique.</p>
-                        <p>Tecnologias: ReactJS, Laravel</p>
-                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="portfolio-box scs" onclick="openSlideshow('scs')">
-                    <div class="portfolio-image">
-                        <img src="images/SCS3.png" alt="Aplicação Móvel para Contratação">
-                        <i class="fas fa-camera portfolio-icon"></i>
-                    </div>
-                    <div class="portfolio-layer flex flex-col items-center justify-center p-4">
-                        <h4>Aplicação Móvel para Contratação de Serviços</h4>
-                        <p>App que conecta clientes a profissionais do sector informal como facilitar o acesso a serviços como carpintaria, jardinagem e outros.</p>
-                        <p>Tecnologias: Flutter e Firebase</p>
-                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="portfolio-box">
-                    <div class="portfolio-layer flex flex-col items-center justify-center text-white p-4">
-                        <h4>Aplicação de Gestão de Tarefas</h4>
-                        <p>App móvel com checklists, fotos e tema escuro elegante.</p>
-                        <p>Tecnologias: Flutter, Firebase, GetX</p>
-                        <a href="#" class="btn inline-block text-white rounded-lg">Ver Projeto</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Slideshow Modal -->
-        <div class="slideshow-modal" id="slideshowModal">
-            <div class="slideshow-container">
-                <img class="slideshow-img" id="slideshowImg" src="images/SRR1.png" alt="Slideshow Image">
-                <i class="fas fa-times close-modal" onclick="closeSlideshow()"></i>
             </div>
         </div>
     </section>
@@ -921,7 +990,7 @@
         // ScrollReveal Animations
         ScrollReveal().reveal('.home-content, .home-img, .about-content, .about-img, .contact form', {
             duration: 1000,
-            distance: '30px',
+            distance: '40px',
             origin: 'bottom',
             easing: 'ease-in-out',
             reset: false
@@ -929,7 +998,7 @@
 
         ScrollReveal().reveal('.experience-card, .portfolio-box', {
             duration: 1000,
-            distance: '30px',
+            distance: '40px',
             origin: 'bottom',
             easing: 'ease-in-out',
             reset: false,
@@ -958,6 +1027,7 @@
         // Slideshow Functionality
         const slideshowModal = document.getElementById('slideshowModal');
         const slideshowImg = document.getElementById('slideshowImg');
+        const slideshowVideo = document.getElementById('slideshowVideo');
         const imageSets = {
             srr: [
                 'images/SRR1.png',
@@ -987,10 +1057,23 @@
                 'images/F4.jpeg',
                 'images/F5.jpeg',
                 'images/F6.jpeg'
+            ],
+            pb: [
+                'images/PB.png'
+            ],
+            dg: [
+                'images/DG1.png',
+                'images/DG2.png',
+                'images/DG3.png'
+            ],
+            gt: [
+                'images/GT.png',
+                'images/GT1.png',
+                'images/GT2.png'
             ]
         };
         let currentImageIndex = 0;
-        let currentImageSet = [];
+        let currentImageSet = null;
         let slideshowInterval;
 
         function openSlideshow(set) {
@@ -999,104 +1082,145 @@
             slideshowModal.classList.add('active');
             body.style.overflow = 'hidden';
             currentImageIndex = 0;
-            slideshowImg.src = currentImageSet[currentImageIndex];
-            slideshowImg.alt = set === 'srr' ? 'Sistema de Registo de Residências' : 
-                              set === 'sca' ? 'Sistema de Comercialização Agrícola' : 
-                              set === 'scs' ? 'Aplicação Móvel para Contratação' : 
-                              'Plataforma de E-learning';
-            slideshowInterval = setInterval(nextImage, 2000);
+            displayMedia(currentImageSet[currentImageIndex], set);
+            document.querySelector('.next-slide').style.display = set === 'pb' ? 'none' : 'block';
+            clearInterval(slideshowInterval);
+            if (set !== 'pb') {
+                slideshowInterval = setInterval(nextImage, 8000);
+            }
+        }
+
+        function displayMedia(src, set) {
+            if (src.endsWith('.mp4')) {
+                slideshowImg.style.display = 'none';
+                slideshowVideo.style.display = 'block';
+                slideshowVideo.querySelector('source').src = src;
+                slideshowVideo.load();
+                slideshowVideo.play();
+                slideshowVideo.alt = 'E-commerce PrecosBaixos Video';
+            } else {
+                slideshowVideo.style.display = 'none';
+                slideshowImg.style.display = 'block';
+                slideshowImg.src = src;
+                slideshowImg.alt = set === 'srr' ? 'Sistema de Registo de Residências' : 
+                                  set === 'sca' ? 'Sistema de Comercialização Agrícola' : 
+                                  set === 'scs' ? 'Aplicação Móvel para Contratação' : 
+                                  set === 'fi' ? 'Plataforma de E-learning' : 
+                                  set === 'dg' ? 'Design Gráfico' : 
+                                  set === 'pb' ? 'E-commerce PrecosBaixos' : 
+                                  'Aplicação de Gestão de Tarefas';
+            }
         }
 
         function closeSlideshow() {
             slideshowModal.classList.remove('active');
             body.style.overflow = 'auto';
             clearInterval(slideshowInterval);
+            slideshowVideo.pause();
+            slideshowVideo.style.display = 'none';
+            slideshowImg.style.display = 'block';
+            document.querySelector('.next-slide').style.display = 'block';
         }
 
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % currentImageSet.length;
-            slideshowImg.src = currentImageSet[currentImageIndex];
+            displayMedia(currentImageSet[currentImageIndex], currentImageSet === imageSets.pb ? 'pb' : 
+                         currentImageSet === imageSets.srr ? 'srr' : 
+                         currentImageSet === imageSets.sca ? 'sca' : 
+                         currentImageSet === imageSets.scs ? 'scs' : 
+                         currentImageSet === imageSets.fi ? 'fi' : 
+                         currentImageSet === imageSets.dg ? 'dg' : 'gt');
+            if (currentImageSet === imageSets.pb) {
+                slideshowVideo.play();
+            }
         }
 
         // Contact Form Handling
-        const contactForm = document.getElementById('contactForm');
-        const formMessage = document.getElementById('formMessage');
-        const submitBtn = contactForm.querySelector('.submit-btn');
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
 
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Client-side validation
-            const name = contactForm.name.value.trim();
-            const email = contactForm.email.value.trim();
-            const contact = contactForm.contact.value.trim();
-            const subject = contactForm.subject.value.trim();
-            const message = contactForm.message.value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const phoneRegex = /^\+?\d{9,15}$/;
+            if (contactForm && formMessage) {
+                const submitBtn = contactForm.querySelector('.submit-btn');
 
-            if (!name || name.length < 2) {
-                showMessage('Por favor, insira um nome válido.', 'error');
-                return;
-            }
-            if (!email || !emailRegex.test(email)) {
-                showMessage('Por favor, insira um email válido.', 'error');
-                return;
-            }
-            if (!contact || !phoneRegex.test(contact)) {
-                showMessage('Por favor, insira um número de contacto válido (9-15 dígitos).', 'error');
-                return;
-            }
-            if (!subject || subject.length < 3) {
-                showMessage('Por favor, insira um assunto válido.', 'error');
-                return;
-            }
-            if (!message || message.length < 10) {
-                showMessage('Por favor, insira uma mensagem com pelo menos 10 caracteres.', 'error');
-                return;
-            }
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    // Client-side validation
+                    const name = contactForm.name.value.trim();
+                    const email = contactForm.email.value.trim();
+                    const contact = contactForm.contact.value.trim();
+                    const subject = contactForm.subject.value.trim();
+                    const message = contactForm.message.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    const phoneRegex = /^\+?\d{9,15}$/;
 
-            // Check honeypot
-            if (contactForm._honey.value) {
-                showMessage('Erro ao enviar a mensagem.', 'error');
-                return;
-            }
+                    if (!name || name.length < 2) {
+                        showMessage('Por favor, insira um nome válido.', 'error');
+                        return;
+                    }
+                    if (!email || !emailRegex.test(email)) {
+                        showMessage('Por favor, insira um email válido.', 'error');
+                        return;
+                    }
+                    if (!contact || !phoneRegex.test(contact)) {
+                        showMessage('Por favor, insira um número de contacto válido (9-15 dígitos).', 'error');
+                        return;
+                    }
+                    if (!subject || subject.length < 3) {
+                        showMessage('Por favor, insira um assunto válido.', 'error');
+                        return;
+                    }
+                    if (!message || message.length < 10) {
+                        showMessage('Por favor, insira uma mensagem com pelo menos 10 caracteres.', 'error');
+                        return;
+                    }
 
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.querySelector('.loader').style.display = 'inline-block';
+                    // Check honeypot
+                    if (contactForm._honey.value) {
+                        showMessage('Erro ao enviar a mensagem.', 'error');
+                        return;
+                    }
 
-            try {
-                const response = await fetch(contactForm.action, {
-                    method: 'POST',
-                    body: new FormData(contactForm),
-                    headers: {
-                        'Accept': 'application/json'
+                    // Show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.querySelector('.loader').style.display = 'inline-block';
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: new FormData(contactForm),
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            showMessage('Mensagem enviada com sucesso!', 'success');
+                            contactForm.reset();
+                        } else {
+                            throw new Error('Falha ao enviar a mensagem.');
+                        }
+                    } catch (error) {
+                        showMessage('Ocorreu um erro. Por favor, tente novamente.', 'error');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.querySelector('.loader').style.display = 'none';
                     }
                 });
 
-                if (response.ok) {
-                    showMessage('Mensagem enviada com sucesso!', 'success');
-                    contactForm.reset();
-                } else {
-                    throw new Error('Falha ao enviar a mensagem.');
+                function showMessage(message, type) {
+                    formMessage.textContent = message;
+                    formMessage.className = `form-message ${type}`;
+                    formMessage.style.display = 'block';
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
                 }
-            } catch (error) {
-                showMessage('Ocorreu um erro. Por favor, tente novamente.', 'error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.querySelector('.loader').style.display = 'none';
+            } else {
+                console.error('Contact form or form message element not found.');
             }
         });
-
-        function showMessage(message, type) {
-            formMessage.textContent = message;
-            formMessage.className = `form-message ${type}`;
-            formMessage.style.display = 'block';
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }
     </script>
 </body>
 </html>
